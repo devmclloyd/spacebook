@@ -10,17 +10,10 @@
     "react-router-dom": "^7.4.0",
     "tailwindcss": "^4.0.14",
     "typescript": "^5.8.2",
-    "vite": "^6.2.2"
+    "vite": "^6.2.2",
+    "build:dev": "vite build --mode development"
     
   }
-
-  "scripts": {
-  "dev": "vite",
-  "build": "tsc && vite build",
-  "build:dev": "vite build --mode development",
-  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-  "preview": "vite preview"
-}
 }
 
 
