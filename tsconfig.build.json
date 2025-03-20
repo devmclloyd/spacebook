@@ -3,6 +3,8 @@
   "extends": "./tsconfig.json",
   "references": [],
   "compilerOptions": {
-    "composite": false
-  }
+    "composite": false,
+    "noEmit": false
+  },
+  "include": ["src"]
 }
