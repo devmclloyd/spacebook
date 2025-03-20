@@ -4,7 +4,8 @@
   "references": [],
   "compilerOptions": {
     "composite": false,
-    "noEmit": false
+    "noEmit": false,
+    "sourceMap": true
   },
   "include": ["src"]
 }
