@@ -3,28 +3,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import type { ConfigEnv, UserConfig } from 'vite'
-
-// Using dynamic import for ESM module
-const loadComponentTagger = async () => {
-  try {
-    const { componentTagger } = await import('lovable-tagger')
-    return componentTagger
-  } catch (error) {
-    console.error('Failed to load componentTagger:', error)
-    return null
-  }
-}
+import { componentTagger } from "lovable-tagger"
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => {
-  // Dynamically import componentTagger
-  const tagger = mode === 'development' ? await loadComponentTagger() : null
-  
+export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   return {
     plugins: [
       react(),
-      mode === 'development' && tagger,
-    ].filter(Boolean) as any,
+      mode === 'development' && componentTagger(),
+    ].filter(Boolean),
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -33,7 +20,6 @@ export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => 
     build: {
       sourcemap: true,
       outDir: 'dist',
-      // Explicitly tell Vite to skip TypeScript checks during build
       rollupOptions: {
         external: [],
       }
@@ -42,15 +28,12 @@ export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => 
       host: "::",
       port: 8080
     },
-    // Override TypeScript configuration for Vite
     optimizeDeps: {
       esbuildOptions: {
         tsconfigRaw: {
           compilerOptions: {
-            // Ensure these settings don't conflict with tsconfig.node.json
             target: 'es2020',
             useDefineForClassFields: true,
-            module: 'ESNext',
             skipLibCheck: true,
             moduleResolution: 'bundler',
             allowImportingTsExtensions: true,
