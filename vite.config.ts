@@ -24,7 +24,7 @@ export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => 
     plugins: [
       react(),
       mode === 'development' && tagger,
-    ].filter(Boolean),
+    ].filter(Boolean) as any,
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -50,7 +50,6 @@ export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => 
             // Ensure these settings don't conflict with tsconfig.node.json
             target: 'es2020',
             useDefineForClassFields: true,
-            lib: ['ES2020', 'DOM', 'DOM.Iterable'],
             module: 'ESNext',
             skipLibCheck: true,
             moduleResolution: 'bundler',
