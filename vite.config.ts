@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import type { ConfigEnv, UserConfig } from 'vite'
 
 // Using dynamic import for ESM module
 const loadComponentTagger = async () => {
@@ -15,7 +16,7 @@ const loadComponentTagger = async () => {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ mode }) => {
+export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => {
   // Dynamically import componentTagger
   const tagger = mode === 'development' ? await loadComponentTagger() : null
   
