@@ -55,6 +55,10 @@ export default function HomePage() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <h1 className="text-xl font-bold">Spacebook</h1>
+              <div className="ml-10 flex space-x-4">
+                <a href="/" className="px-3 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600">Home</a>
+                <a href="/products" className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">Products</a>
+              </div>
             </div>
             <div className="flex items-center">
               <button 

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from './lib/supabaseClient';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
 import { Session } from '@supabase/supabase-js';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={session ? <HomePage /> : <Navigate to="/auth" />} />
+        <Route path="/products" element={session ? <ProductsPage /> : <Navigate to="/auth" />} />
         <Route path="/auth" element={!session ? <AuthPage /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
